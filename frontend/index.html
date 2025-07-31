@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLookup</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MediLookup</h1>
+            <p>Discover natural remedies and traditional healing practices from around the world</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-tabs">
+                <button class="tab-button active" data-tab="plant">Search by Plant</button>
+                <button class="tab-button" data-tab="condition">Search by Condition</button>
+                <button class="tab-button" data-tab="region">By Region</button>
+            </div>
+            
+            <form class="search-form" id="searchForm">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput" 
+                    placeholder="Enter plant name (e.g., Turmeric, Ginger, Echinacea)"
+                    required
+                >
+                <button type="submit" class="search-button">
+                    Search Remedies
+                </button>
+            </form>
+        </div>
+
+        <div id="loadingDiv" class="loading" style="display: none;">
+            <div>Searching traditional medicine database...</div>
+        </div>
+
+        <div id="errorDiv" class="error" style="display: none;"></div>
+
+        <div class="results-container" id="resultsContainer"></div>
+    </div>
+</body>
+</html>
