@@ -1,51 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const status = document.getElementById('status');
-  const weatherDiv = document.getElementById('weather');
-  const temp = document.getElementById('temp');
-  const humidity = document.getElementById('humidity');
-  const wind = document.getElementById('wind');
-  const uvi = document.getElementById('uvi');
-  const alerts = document.getElementById('alerts');
+document.getElementById('searchBtn').addEventListener('click', async () => {
+  const location = document.getElementById('locationInput').value.trim();
+  const weatherContainer = document.getElementById('weatherContainer');
 
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(async position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+  if (!location) {
+    weatherContainer.innerHTML = '<p>Please enter a location.</p>';
+    return;
+  }
 
-      try {
-        const response = await fetch(`/weather?lat=${lat}&lon=${lon}`);
-        const data = await response.json();
+  weatherContainer.innerHTML = `<p class="loading">Loading</p>`;
 
-        if (data.error) {
-          status.textContent = data.error;
-          return;
-        }
+  try {
+    const res = await fetch(`/weather?location=${encodeURIComponent(location)}`);
+    const data = await res.json();
 
-        status.textContent = "Here's your local weather:";
-        weatherDiv.classList.remove('hidden');
+    if (data.error) {
+      weatherContainer.innerHTML = `<p style="color: red;">${data.error}</p>`;
+      return;
+    }
 
-        temp.textContent = data.temp;
-        humidity.textContent = data.humidity;
-        wind.textContent = data.wind_speed;
-        uvi.textContent = data.uvi;
-
-        if (data.alerts.length > 0) {
-          const messages = data.alerts.map(alert => `<p><strong> ${alert.event}:</strong> ${alert.description}</p>`).join('');
-          alerts.innerHTML = messages;
-        } else if (data.uvi > 7) {
-          alerts.innerHTML = '<p><strong>! Extreme UV Index!</strong> Take precautions when outdoors.</p>';
-        } else {
-          alerts.innerHTML = '<p>No extreme weather alerts.</p>';
-        }
-
-      } catch (error) {
-        status.textContent = 'Error fetching weather data.';
-      }
-
-    }, () => {
-      status.textContent = 'Unable to get your location.';
-    });
-  } else {
-    status.textContent = 'Geolocation not supported by your browser.';
+    weatherContainer.innerHTML = `
+      <h2>${data.location}</h2>
+      <img src="${data.icon}" alt="${data.condition}" />
+      <p><strong>${data.condition}</strong></p>
+      <p> Temp: ${data.temp} °C</p>
+      <p> Humidity: ${data.humidity}%</p>
+      <p> Wind Speed: ${data.wind_speed} kph</p>
+      <p> UV Index: ${data.uvi}</p>
+    `;
+  } catch (error) {
+    console.error(error);
+    weatherContainer.innerHTML = '<p>Something went wrong. Please try again later.</p>';
   }
 });

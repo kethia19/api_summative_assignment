@@ -14,7 +14,7 @@ It uses the [WeatherAPI Current Weather API](https://www.weatherapi.com/docs/) a
 
 ---
 
-## 📦 Docker Image
+## Docker Image
 **Docker Hub:** `https://hub.docker.com/r/kethia19/api_summative_assignment`
 
 **Image name:** `kethia19/api_summative_assignment`
@@ -152,6 +152,8 @@ README.md
 
 ## Demo Video
 
+https://youtu.be/fLZBhj2_mAY
+
 ---
 
-> Api_summative_assignment End
+> Api_summative_assignment

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FarmCast - Weather Alerts</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmCast - Weather Alerts for Farmers</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1> FarmCast</h1>
-    <p id="status">Detecting your location...</p>
-    <div id="weather" class="hidden">
-      <p><strong>Temperature:</strong> <span id="temp"></span> °C</p>
-      <p><strong>Humidity:</strong> <span id="humidity"></span>%</p>
-      <p><strong>Wind Speed:</strong> <span id="wind"></span> m/s</p>
-      <p><strong>UV Index:</strong> <span id="uvi"></span></p>
-      <div id="alerts"></div>
+    <p>Get real-time weather data for your area</p>
+
+    <div class="search">
+      <input type="text" id="locationInput" placeholder="Enter location (e.g., Kigali)" />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="weather" id="weatherContainer">
+      <!-- The data will appear here -->
     </div>
   </div>
 
