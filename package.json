@@ -1,0 +1,16 @@
+{
+  "name": "farmcast",
+  "version": "1.0.0",
+  "description": "A weather alert web app for farmers using OpenWeather API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "kethia19",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.7"
+  }
+}

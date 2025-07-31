@@ -1,9 +1,20 @@
-FROM nginx:alpine
+# Use official Node.js LTS image
+FROM node:18-alpine
 
-COPY ./frontend/ /usr/share/nginx/html/
+# Set working directory
+WORKDIR /app
 
-# Used port
-EXPOSE 80
+# Copy package files
+COPY package*.json ./
 
-# Starting nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Install dependencies
+RUN npm install
+
+# Copy app source
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Start the app
+CMD ["node", "server.js"]
